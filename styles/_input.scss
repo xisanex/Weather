@@ -1,0 +1,84 @@
+.container {
+  position: relative;
+  width: 40vw;
+  padding: 1.1rem 4rem;
+  background-color: transparent;
+  box-shadow: 0 0 3 em rgba(0, 0, 0, 0.15);
+}
+
+.search-bar {
+  --size: 50px;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  height: var(--size);
+  width: var(--size);
+  padding: 3px;
+  margin-top: 1rem;
+  border: 2.2px solid $color-input;
+  border-radius: 100vh;
+  transition: width 700ms cubic-bezier(0.18, 0.89, 0.32, 1.15);
+
+  &__input {
+    position: absolute;
+    flex-grow: 1;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    line-height: calc(var(--size) - 3px);
+    padding: 0 0.5em;
+    font-size: 1.1rem;
+    border: 0;
+    cursor: pointer;
+  }
+  &__input:focus {
+    outline: 0;
+  }
+  &__submit {
+    z-index: 99;
+    width: calc(var(--size) - 10px);
+    height: calc(var(--size) - 10px);
+    margin-left: auto;
+    font-size: 1rem;
+    border: 0;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 300ms ease-in-out;
+    transition: color 300ms ease-in-out;
+  }
+  &:focus-within {
+    width: 100%;
+
+    .search-bar__submit {
+      background-color: $color-header;
+      color: $color-input-typing;
+    }
+  }
+  &__input:focus-within {
+    opacity: 1;
+    width: calc(100% - var(--size));
+    color: $color-input-typing;
+    background-color: transparent;
+    cursor: initial;
+  }
+  &__submit:focus,
+  &__submit:hover {
+    outline: 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+  }
+}
+#error {
+  display: inline-block;
+  margin-top: 1rem;
+  margin-left: 25px;
+  padding: 0.5rem;
+  background-color: $color-nav;
+  border-radius: 5%;
+  overflow: hidden;
+}
+
+// ////////////////////////////
+
+/////////////////////////////////////////

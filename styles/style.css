@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: "Raleway", sans-serif;
+  background-image: url("../img/background_clouds.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: black;
+  background-blend-mode: multiply;
+  padding: 2rem;
+  height: 90vh;
+}
+/*# sourceMappingURL=style.css.map */

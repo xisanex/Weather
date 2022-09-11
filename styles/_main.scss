@@ -1,0 +1,33 @@
+.bookmared {
+  width: 600px;
+  height: 200px;
+  background-color: $color-header1;
+  margin-top: 50px;
+  padding: 10px;
+  // overflow: hidden;
+}
+.bookmared__container {
+  position: relative;
+  width: 25%;
+  height: 130px;
+  background-color: $color-nav;
+  color: $color-header;
+  border-radius: 10%;
+  float: left;
+  margin: 20px;
+  z-index: 2;
+  align-self: center;
+}
+
+.container__city-name {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  transform: translate(-50%, 0);
+}
+.bookmarked__icon {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -80%);
+}

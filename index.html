@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>Weather</title>
+    <meta name="description" content="weather forecast in a selected city" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script
+      src="https://kit.fontawesome.com/b88c2f6411.js"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="script.js"></script>
+  </head>
+
+  <body>
+    <header class="header">
+      <h1 class="header__title">
+        <i class="fas fa-solid fa-cloud-sun-rain header__icon"></i>Weather
+      </h1>
+      <div class="header__date">
+        <span id="header__date-hour"></span>
+      </div>
+    </header>
+
+    <div class="row">
+      <div class="container col">
+        <form class="search-bar" method="get">
+          <input
+            type="text"
+            class="search-bar__input"
+            placeholder="Type city..."
+            aria-label="search"
+          />
+          <button
+            type="submit"
+            accesskey="enter"
+            class="search-bar__submit"
+            aria-label="submit search"
+          >
+            <i class="fas fa-search search-bar__icon"></i>
+          </button>
+        </form>
+        <div id="error" class="hidden"></div>
+        <div class="bookmared"></div>
+      </div>
+      <!-- Weather display-->
+      <section class="section col"></section>
+    </div>
+
+    <footer></footer>
+  </body>
+</html>
