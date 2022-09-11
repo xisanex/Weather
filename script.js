@@ -30,14 +30,15 @@ const renderErrorMessage = function (error) {
   weatherContainer.insertAdjacentHTML("beforeend", html);
 };
 
+const arrStorage = [];
+
 const renderWeather = function (data, className = "") {
   // Array with data for next days
   const arrTomorrow = [];
   const tempNextDaysAt12 = [];
-  // console.log(data);
+
   data.list.forEach((object) => {
     if (object.dt_txt.slice(8, 10) !== data.list[0].dt_txt.slice(8, 10)) {
-      // console.log(data);
       arrTomorrow.push(object);
     }
   });
@@ -101,6 +102,17 @@ const renderWeather = function (data, className = "") {
         <img src="${icons}" alt="Weather icon"/>
       </figure>
     </div>`;
+
+    // if ((listWeatherContainer.innerHTML = html)) return;
+
+    arrStorage.push(data.city.name);
+    if (!arrStorage.includes(data.city.name)) {
+      window.localStorage.setItem("arrStorage", arrStorage);
+      window.localStorage.getItem(arrStorage);
+      console.log(localStorage);
+    }
+    // console.log(arrStorage);
+
     listWeatherContainer.insertAdjacentHTML("beforeend", html);
   });
 };
