@@ -277,12 +277,4 @@ body {
   left: 50%;
   -webkit-transform: translate(-50%, -80%);
           transform: translate(-50%, -80%);
-}
-
-footer {
-  position: absolute;
-  bottom: 0;
-  height: 70px;
-  width: 70vw;
-  background-color: pink;
 }/*# sourceMappingURL=style.css.map */

@@ -9,6 +9,8 @@ class View {
   constructor() {
     setInterval(this._displayTime, 1000);
     this._eventListeners();
+    this._getLocalStorage();
+    this._removeBookmarks();
   }
   /**
    * Render weather from received data
@@ -43,33 +45,6 @@ class View {
       d.toISOString().slice(0, 10) + " " + hour + ":" + min + ":" + sec;
   }
 
-  _generateBookmarks = (data, icons) => {
-    const bookmarkBtn = document.querySelector(".section__btn-bookmark");
-
-    bookmarkBtn.addEventListener("click", () => {
-      console.log("click");
-      let html = `
-      <div class="bookmared__container">
-        <span class="container__city-name">${data.city.name}</span>
-        <figure class="bookmarked__icon">
-          <img src="${icons}" alt="Weather icon"/>
-        </figure>
-      </div>`;
-
-      // if ((listWeatherContainer.innerHTML = html)) return;
-
-      this._arrStorage.push(data.city.name);
-      if (!this._arrStorage.includes(data.city.name)) {
-        window.localStorage.setItem("arrStorage", this._arrStorage);
-        window.localStorage.getItem(arrStorage);
-        console.log(localStorage);
-      }
-      // console.log(arrStorage);
-
-      this._listWeatherContainer.insertAdjacentHTML("beforeend", html);
-    });
-  };
-
   /**
    * Generating markup for weather for today and 2 next days from data
    * @param {*} data data received from method render Weather
@@ -78,7 +53,7 @@ class View {
   _generateMarkup = (data, tempNextDaysAt12) => {
     const absZer = 273.15;
     const icons = `http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`;
-    console.log(this);
+    // console.log(this);
     let html = `
        <button type="submit" class="section__btn-bookmark"><i class="far fa-bookmark"></i></button>
         <h2 class="section__city-name" data-name="">
@@ -122,8 +97,64 @@ class View {
     weatherContainer.insertAdjacentHTML("beforeend", html);
     weatherContainer.innerHTML = html;
     this._generateBookmarks(data, icons);
+    this._removeBookmarks();
   };
 
+  _setLocalStorage() {
+    localStorage.setItem("arrStorage", JSON.stringify(this._arrStorage));
+  }
+
+  _getLocalStorage() {
+    const cityName = JSON.parse(localStorage.getItem("arrStorage"));
+
+    if (!cityName) return;
+    console.log(cityName);
+    this._arrStorage = cityName;
+
+    // localStorage.clear();
+    this._arrStorage.forEach((item, index, array) => {
+      this._renderBookmarks(item);
+    });
+  }
+  /**
+   * render bookmarks
+   * @param {*} data
+   * @param {*} icons
+   */
+  _renderBookmarks(data, icons) {
+    let html = `
+      <div class="bookmared__container">
+      <button type="button" class="bookmarked__cancel"><i class="fas fa-window-close"></i></button>
+      <span class="container__city-name">${data.city.name}</span>
+      <figure class="bookmarked__icon">
+      <img src="${`http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`}" alt="Weather icon"/>
+      </figure>
+      </div>`;
+    this._listWeatherContainer.insertAdjacentHTML("beforeend", html);
+  }
+  _generateBookmarks = (data, icons) => {
+    const bookmarkBtn = document.querySelector(".section__btn-bookmark");
+    bookmarkBtn.addEventListener("click", () => {
+      console.log("click");
+
+      // this._renderBookmarks(data, icons);
+      if (!this._arrStorage.includes(data)) {
+        this._arrStorage.push(data);
+        this._renderBookmarks(data);
+      }
+      this._setLocalStorage();
+    });
+  };
+
+  _removeBookmarks() {
+    const cancelBookmarkBtn = document.querySelector(".bookmarked__cancel");
+    if (!cancelBookmarkBtn) return;
+    const parentElement = cancelBookmarkBtn.parentNode;
+    cancelBookmarkBtn.addEventListener("click", () => {
+      console.log("hi");
+      parentElement.remove();
+    });
+  }
   /**
    * all listeners called at start the application
    */
