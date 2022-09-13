@@ -10,7 +10,7 @@ class View {
     setInterval(this._displayTime, 1000);
     this._eventListeners();
     this._getLocalStorage();
-    this._removeBookmarks();
+    // this._removeBookmarks();
   }
   /**
    * Render weather from received data
@@ -112,7 +112,7 @@ class View {
     this._arrStorage = cityName;
 
     // localStorage.clear();
-    this._arrStorage.forEach((item, index, array) => {
+    this._arrStorage.forEach((item) => {
       this._renderBookmarks(item);
     });
   }
@@ -135,13 +135,14 @@ class View {
   _generateBookmarks = (data, icons) => {
     const bookmarkBtn = document.querySelector(".section__btn-bookmark");
     bookmarkBtn.addEventListener("click", () => {
-      console.log("click");
+      // console.log("click");
+      console.log(this._arrStorage);
 
-      // this._renderBookmarks(data, icons);
       if (!this._arrStorage.includes(data)) {
+        console.log("djsodja");
         this._arrStorage.push(data);
-        this._renderBookmarks(data);
       }
+
       this._setLocalStorage();
     });
   };

@@ -11,10 +11,10 @@ class Api {
         const { longitude } = position.coords;
         this._getWeatherNextDays(latitude, longitude);
       },
-      (error = function (err) {
+      (err) => {
         console.error(`Error: ${err.message}`);
-        renderErrorMessage(err.message);
-      })
+        this._renderErrorMessage(err.message);
+      }
     );
   }
   /** Getting weather data by city name from API*/
