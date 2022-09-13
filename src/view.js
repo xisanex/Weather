@@ -6,6 +6,7 @@ class View {
 
   _listWeatherContainer = document.querySelector(".bookmared");
   _arrStorage = [];
+  _dataStorage = [];
   constructor() {
     setInterval(this._displayTime, 1000);
     this._eventListeners();
@@ -108,8 +109,8 @@ class View {
     const cityName = JSON.parse(localStorage.getItem("arrStorage"));
 
     if (!cityName) return;
-    console.log(cityName);
     this._arrStorage = cityName;
+    console.log("getLocalStorage", this._arrStorage);
 
     // localStorage.clear();
     this._arrStorage.forEach((item) => {
@@ -135,15 +136,15 @@ class View {
   _generateBookmarks = (data, icons) => {
     const bookmarkBtn = document.querySelector(".section__btn-bookmark");
     bookmarkBtn.addEventListener("click", () => {
-      // console.log("click");
-      console.log(this._arrStorage);
-
-      if (!this._arrStorage.includes(data)) {
-        console.log("djsodja");
+      if (
+        !this._arrStorage.find((el) => {
+          return el?.city?.name === data?.city?.name;
+        })
+      ) {
         this._arrStorage.push(data);
+        this._setLocalStorage();
+        this._renderBookmarks(data);
       }
-
-      this._setLocalStorage();
     });
   };
 
