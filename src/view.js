@@ -8,10 +8,12 @@ class View {
   _arrStorage = [];
   _dataStorage = [];
   _idNum = 0;
+  _counter = 1;
   constructor() {
     setInterval(this._displayTime, 1000);
     this._eventListeners();
     this._getLocalStorage();
+    this._downBookmarks();
     // this._removeBookmarks();
   }
   /**
@@ -102,10 +104,14 @@ class View {
     // this._removeBookmarkSs();
   };
 
+  /**
+   * seting localStorage
+   */
   _setLocalStorage() {
     localStorage.setItem("arrStorage", JSON.stringify(this._arrStorage));
   }
 
+  /** geting item from localStorage and render Bookmarks for each element in this storage */
   _getLocalStorage() {
     const cityName = JSON.parse(localStorage.getItem("arrStorage"));
 
@@ -138,6 +144,11 @@ class View {
     this._listWeatherContainer.insertAdjacentHTML("beforeend", html);
     this._removeBookmarks(data);
   }
+  /**
+   * generating bookmarks and adding it to localStorage
+   * @param {*} data received from generateMarkup
+   * @param {*} icons
+   */
   _generateBookmarks = (data, icons) => {
     const bookmarkBtn = document.querySelector(".section__btn-bookmark");
     bookmarkBtn.addEventListener("click", () => {
@@ -166,7 +177,11 @@ class View {
       // }
     });
   };
-
+  /**
+   * remove bookmarks also from localStorage
+   * @param {*} data received from render Bookmarks
+   * @returns
+   */
   _removeBookmarks(data) {
     const cancelBookmarkBtn = document.querySelector(
       `.bookmarked__cancel--${this._idNum}`
@@ -212,6 +227,18 @@ class View {
     this.errorElement.classList.add("hidden");
     getWeather(input);
     this._myForm.reset();
+  }
+
+  _downBookmarks() {
+    const downBtn = document.querySelector(".bookmarked__down");
+    const container = document.querySelectorAll(".bookmared__container");
+    downBtn.addEventListener("click", () => {
+      const size = document.querySelector(".bookmared__container").clientHeight;
+      console.log(size);
+      this._counter++;
+      container.style.transform =
+        "translateY(" + (-size + this._counter) + "px)";
+    });
   }
 }
 

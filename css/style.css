@@ -242,11 +242,28 @@ body {
 }
 
 .bookmared {
+  position: relative;
   width: 600px;
   height: 200px;
   background-color: rgb(60, 60, 121);
   margin-top: 50px;
   padding: 10px;
+}
+
+.bookmarked__down {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+}
+
+.bookmarked__up {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0) rotate(180deg);
+          transform: translate(-50%, 0) rotate(180deg);
 }
 
 .bookmared__container {

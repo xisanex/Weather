@@ -1,10 +1,23 @@
 .bookmared {
+  position: relative;
   width: 600px;
   height: 200px;
   background-color: $color-header1;
   margin-top: 50px;
   padding: 10px;
   // overflow: hidden;
+}
+.bookmarked__down {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+.bookmarked__up {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, 0) rotate(180deg);
 }
 .bookmared__container {
   position: relative;
