@@ -7,6 +7,7 @@ class View {
   _listWeatherContainer = document.querySelector(".bookmared");
   _arrStorage = [];
   _dataStorage = [];
+  _idNum = 0;
   constructor() {
     setInterval(this._displayTime, 1000);
     this._eventListeners();
@@ -98,7 +99,7 @@ class View {
     weatherContainer.insertAdjacentHTML("beforeend", html);
     weatherContainer.innerHTML = html;
     this._generateBookmarks(data, icons);
-    this._removeBookmarks();
+    // this._removeBookmarkSs();
   };
 
   _setLocalStorage() {
@@ -123,15 +124,19 @@ class View {
    * @param {*} icons
    */
   _renderBookmarks(data, icons) {
+    this._idNum++;
     let html = `
       <div class="bookmared__container">
-      <button type="button" class="bookmarked__cancel"><i class="fas fa-window-close"></i></button>
+      <button type="button" class="bookmarked__cancel--${
+        this._idNum
+      }"><i class="fas fa-window-close"></i></button>
       <span class="container__city-name">${data.city.name}</span>
       <figure class="bookmarked__icon">
       <img src="${`http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`}" alt="Weather icon"/>
       </figure>
       </div>`;
     this._listWeatherContainer.insertAdjacentHTML("beforeend", html);
+    this._removeBookmarks(data);
   }
   _generateBookmarks = (data, icons) => {
     const bookmarkBtn = document.querySelector(".section__btn-bookmark");
@@ -145,15 +150,36 @@ class View {
         this._setLocalStorage();
         this._renderBookmarks(data);
       }
+
+      // const warunek = this._arrStorage.find((el) => {
+      //   if(el?.city?.name === data?.city?.name) {
+      //     return true;
+      //   } else {
+      //     return false;
+      //   }
+      // })
+
+      // if (!warunek) {
+      //   this._arrStorage.push(data);
+      //   this._setLocalStorage();
+      //   this._renderBookmarks(data);
+      // }
     });
   };
 
-  _removeBookmarks() {
-    const cancelBookmarkBtn = document.querySelector(".bookmarked__cancel");
+  _removeBookmarks(data) {
+    const cancelBookmarkBtn = document.querySelector(
+      `.bookmarked__cancel--${this._idNum}`
+    );
     if (!cancelBookmarkBtn) return;
     const parentElement = cancelBookmarkBtn.parentNode;
+
     cancelBookmarkBtn.addEventListener("click", () => {
-      console.log("hi");
+      const filtred = this._arrStorage.filter((el) => {
+        return JSON.stringify(el) !== JSON.stringify(data);
+      });
+      this._arrStorage = filtred;
+      this._setLocalStorage(this._arrStorage);
       parentElement.remove();
     });
   }
