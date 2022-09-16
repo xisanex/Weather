@@ -11,57 +11,84 @@ sup {
   margin-top: calc(2rem + 25px);
   margin-right: 4rem;
   color: $color-nav;
+
   &__btn-bookmark {
     position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 30px;
-    width: 50px;
     height: 50px;
+    width: 50px;
+    top: 2%;
+    right: 2%;
+    font-size: 40px;
+    background-color: $color-nav;
+    color: $color-input;
+    border: none;
+    border-radius: 10%;
+  }
+
+  &__btn-bookmark:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
   }
 
   &__city-name {
-    padding: 2rem;
     position: absolute;
+    padding: 2rem;
+    left: 50%;
     color: $color-input-typing;
     font-size: 2rem;
-    left: 50%;
-    // top: 10%;
     transform: translate(-50%, 0);
   }
 
-  &__city-temp {
-    position: absolute;
-    right: 17%;
-    top: 100px;
-    font-size: 2.8rem;
-    border-bottom: solid;
-  }
-  &__city-temp-feels {
-    position: absolute;
-    top: 160px;
-    right: 17%;
-    font-size: 1.8rem;
-    // top: 90px;
-    // font-size: 2.4rem;
-    // border-bottom: solid;
-  }
-  &__figure {
-    .figure__city-icon {
+  &__icon-temp {
+    position: relative;
+    width: 24vw;
+    height: 180px;
+    top: 20%;
+    left: 50%;
+    transform: translate((-50%, 0));
+
+    .section__city-temp {
       position: absolute;
-      top: 70px;
-      left: 10%;
-      width: 120px;
-      height: auto;
+      top: 30%;
+      left: 95%;
+      font-size: 2.8rem;
+      border-bottom: solid;
+      transform: translate(-95%, -30%);
     }
-    .figure__describe-weather {
+    .section__city-temp-feels {
       position: absolute;
-      top: 170px;
-      left: 8%;
-      // transform: translate(-8%, 0);
-      font-size: 1.1rem;
+      top: 65%;
+      left: 90%;
+      transform: translate(-90%, -65%);
+      font-size: 1.6rem;
+      color: $color-input-typing;
+    }
+    .section__figure {
+      position: relative;
+      width: 150px;
+      height: 200px;
+      top: 20%;
+      left: -5%;
+      transform: translate(5%, -20%);
+      .figure__city-icon {
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%, -10%);
+        width: 120px;
+        height: auto;
+      }
+      .figure__describe-weather {
+        position: absolute;
+        top: 65%;
+        left: 50%;
+        transform: translate(-50%, -65%);
+        font-size: 1.1rem;
+      }
     }
   }
+
   &__day {
     position: absolute;
     height: 120px;

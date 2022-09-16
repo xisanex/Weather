@@ -4,16 +4,17 @@ class View {
   errorElement = document.getElementById("error");
   _myForm = document.querySelector(".search-bar");
 
-  _listWeatherContainer = document.querySelector(".bookmared");
+  _listWeatherContainer = document.querySelector(".bookmarked__slider");
   _arrStorage = [];
   _dataStorage = [];
   _idNum = 0;
-  _counter = 1;
+  _curSlide = 0;
   constructor() {
     setInterval(this._displayTime, 1000);
     this._eventListeners();
     this._getLocalStorage();
-    this._downBookmarks();
+    this._nextBookmarks();
+    this._prevBookmarks();
     // this._removeBookmarks();
   }
   /**
@@ -63,20 +64,22 @@ class View {
         <h2 class="section__city-name" data-name="">
           <span> ${data.city.name}</span>
         </h2>
-       
-        <span class="section__city-temp">
-          ${(data.list[0].main.temp - absZer).toFixed(1)}<sup>°C</sup>
-        </span>
-        <span class="section__city-temp-feels"> ${(
-          data.list[0].main.feels_like - absZer
-        ).toFixed(1)}<sup>°C</sup> </span>
+        <div class="section__icon-temp">
           
-        <figure class ="section__figure">
+          <span class="section__city-temp">
+          ${(data.list[0].main.temp - absZer).toFixed(1)}<sup>°C</sup>
+          </span>
+          <span class="section__city-temp-feels"> ${(
+            data.list[0].main.feels_like - absZer
+          ).toFixed(1)}<sup>°C</sup> </span>
+          <figure class ="section__figure">
           <img class="figure__city-icon" src="${icons}" alt="Weather icon" />
           <figcaption class="figure__describe-weather">${
             data.list[0].weather[0].description
           }</figcaption>
         </figure>
+        </div>
+       
   
         <div class="section__day section__day--left">
           <h3 class="day__date">${tempNextDaysAt12[0].dt_txt
@@ -133,7 +136,7 @@ class View {
     this._idNum++;
     let html = `
       <div class="bookmared__container">
-      <button type="button" class="bookmarked__cancel--${
+      <button type="button" class="bookmarked__cancel bookmarked__cancel--${
         this._idNum
       }"><i class="fas fa-window-close"></i></button>
       <span class="container__city-name">${data.city.name}</span>
@@ -229,15 +232,35 @@ class View {
     this._myForm.reset();
   }
 
-  _downBookmarks() {
-    const downBtn = document.querySelector(".bookmarked__down");
-    const container = document.querySelectorAll(".bookmared__container");
+  _nextBookmarks() {
+    const downBtn = document.querySelector(".bookmarked__next");
+    const container = document.querySelector(".bookmarked__slider");
+    const containers = document.querySelectorAll(".bookmared__container");
+
+    container.style.transition = "transform 0.4s ease-in-out";
+    let maxSlide = containers.length;
+    console.log(maxSlide);
     downBtn.addEventListener("click", () => {
-      const size = document.querySelector(".bookmared__container").clientHeight;
-      console.log(size);
-      this._counter++;
-      container.style.transform =
-        "translateY(" + (-size + this._counter) + "px)";
+      if (this._curSlide === 0) {
+        this._curSLide = maxSlide;
+      } else {
+        this._curSlide++;
+      }
+      container.style.transform = `translateX(${190 * this._curSlide}px)`;
+    });
+  }
+
+  _prevBookmarks() {
+    const prevBtn = document.querySelector(".bookmarked__prev");
+    let container = document.querySelector(".bookmarked__slider");
+    const containers = document.querySelectorAll(".bookmared__container");
+    container.style.transition = "transform 0.4s ease-in-out";
+    let maxSlide = containers.length;
+    console.log(this._curSlide);
+    prevBtn.addEventListener("click", () => {
+      this._curSlide--;
+      console.log(this._curSlide);
+      container.style.transform = `translateX(${190 * this._curSlide}px)`;
     });
   }
 }
