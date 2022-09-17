@@ -1,20 +1,17 @@
 import { getWeather } from "./api.js";
+import { removeBookmarks, generateBookmarks } from "./bookmarks.js";
+
 class View {
   weatherContainer = document.querySelector(".section");
   errorElement = document.getElementById("error");
   _myForm = document.querySelector(".search-bar");
 
-  _listWeatherContainer = document.querySelector(".bookmarked__slider");
-  _arrStorage = [];
-  _dataStorage = [];
-  _idNum = 0;
-  _curSlide = 0;
   constructor() {
     setInterval(this._displayTime, 1000);
     this._eventListeners();
-    this._getLocalStorage();
-    this._nextBookmarks();
-    this._prevBookmarks();
+
+    // this._nextBookmarks();
+    // this._prevBookmarks();
     // this._removeBookmarks();
   }
   /**
@@ -103,104 +100,10 @@ class View {
     `;
     weatherContainer.insertAdjacentHTML("beforeend", html);
     weatherContainer.innerHTML = html;
-    this._generateBookmarks(data, icons);
-    // this._removeBookmarkSs();
+    generateBookmarks(data, icons);
+    removeBookmarks();
   };
 
-  /**
-   * seting localStorage
-   */
-  _setLocalStorage() {
-    localStorage.setItem("arrStorage", JSON.stringify(this._arrStorage));
-  }
-
-  /** geting item from localStorage and render Bookmarks for each element in this storage */
-  _getLocalStorage() {
-    const cityName = JSON.parse(localStorage.getItem("arrStorage"));
-
-    if (!cityName) return;
-    this._arrStorage = cityName;
-    console.log("getLocalStorage", this._arrStorage);
-
-    // localStorage.clear();
-    this._arrStorage.forEach((item) => {
-      this._renderBookmarks(item);
-    });
-  }
-  /**
-   * render bookmarks
-   * @param {*} data
-   * @param {*} icons
-   */
-  _renderBookmarks(data, icons) {
-    this._idNum++;
-    let html = `
-      <div class="bookmared__container">
-      <button type="button" class="bookmarked__cancel bookmarked__cancel--${
-        this._idNum
-      }"><i class="fas fa-window-close"></i></button>
-      <span class="container__city-name">${data.city.name}</span>
-      <figure class="bookmarked__icon">
-      <img src="${`http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`}" alt="Weather icon"/>
-      </figure>
-      </div>`;
-    this._listWeatherContainer.insertAdjacentHTML("beforeend", html);
-    this._removeBookmarks(data);
-  }
-  /**
-   * generating bookmarks and adding it to localStorage
-   * @param {*} data received from generateMarkup
-   * @param {*} icons
-   */
-  _generateBookmarks = (data, icons) => {
-    const bookmarkBtn = document.querySelector(".section__btn-bookmark");
-    bookmarkBtn.addEventListener("click", () => {
-      if (
-        !this._arrStorage.find((el) => {
-          return el?.city?.name === data?.city?.name;
-        })
-      ) {
-        this._arrStorage.push(data);
-        this._setLocalStorage();
-        this._renderBookmarks(data);
-      }
-
-      // const warunek = this._arrStorage.find((el) => {
-      //   if(el?.city?.name === data?.city?.name) {
-      //     return true;
-      //   } else {
-      //     return false;
-      //   }
-      // })
-
-      // if (!warunek) {
-      //   this._arrStorage.push(data);
-      //   this._setLocalStorage();
-      //   this._renderBookmarks(data);
-      // }
-    });
-  };
-  /**
-   * remove bookmarks also from localStorage
-   * @param {*} data received from render Bookmarks
-   * @returns
-   */
-  _removeBookmarks(data) {
-    const cancelBookmarkBtn = document.querySelector(
-      `.bookmarked__cancel--${this._idNum}`
-    );
-    if (!cancelBookmarkBtn) return;
-    const parentElement = cancelBookmarkBtn.parentNode;
-
-    cancelBookmarkBtn.addEventListener("click", () => {
-      const filtred = this._arrStorage.filter((el) => {
-        return JSON.stringify(el) !== JSON.stringify(data);
-      });
-      this._arrStorage = filtred;
-      this._setLocalStorage(this._arrStorage);
-      parentElement.remove();
-    });
-  }
   /**
    * all listeners called at start the application
    */
@@ -230,38 +133,6 @@ class View {
     this.errorElement.classList.add("hidden");
     getWeather(input);
     this._myForm.reset();
-  }
-
-  _nextBookmarks() {
-    const downBtn = document.querySelector(".bookmarked__next");
-    const container = document.querySelector(".bookmarked__slider");
-    const containers = document.querySelectorAll(".bookmared__container");
-
-    container.style.transition = "transform 0.4s ease-in-out";
-    let maxSlide = containers.length;
-    console.log(maxSlide);
-    downBtn.addEventListener("click", () => {
-      if (this._curSlide === 0) {
-        this._curSLide = maxSlide;
-      } else {
-        this._curSlide++;
-      }
-      container.style.transform = `translateX(${190 * this._curSlide}px)`;
-    });
-  }
-
-  _prevBookmarks() {
-    const prevBtn = document.querySelector(".bookmarked__prev");
-    let container = document.querySelector(".bookmarked__slider");
-    const containers = document.querySelectorAll(".bookmared__container");
-    container.style.transition = "transform 0.4s ease-in-out";
-    let maxSlide = containers.length;
-    console.log(this._curSlide);
-    prevBtn.addEventListener("click", () => {
-      this._curSlide--;
-      console.log(this._curSlide);
-      container.style.transform = `translateX(${190 * this._curSlide}px)`;
-    });
   }
 }
 
