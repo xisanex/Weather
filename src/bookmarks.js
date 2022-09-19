@@ -2,17 +2,19 @@ import LocalStorage from "./localStorage.js";
 class Bookmarks {
   _idNum = 0;
   _curSlide = 0;
-  arrStorage = [];
   _listWeatherContainer = document.querySelector(".bookmarked__slider");
+  _btnContainers = {};
+  arrStorage = [];
   constructor() {
     this.arrStorage = LocalStorage.getLocalStorage();
-    console.log(this.arrStorage.length);
+
     if (this.arrStorage.length) {
-      console.log("hi");
       this.arrStorage.forEach((item) => {
         this.renderBookmarks(item);
       });
     }
+    this._prevBookmarks();
+    this._nextBookmarks();
   }
 
   /**
@@ -34,7 +36,7 @@ class Bookmarks {
       </div>`;
     this._listWeatherContainer.insertAdjacentHTML("beforeend", html);
     this.removeBookmarks(data);
-    console.log("hi");
+    this._btnContainer();
   };
   /**
    * generating bookmarks and adding it to localStorage
@@ -91,35 +93,54 @@ class Bookmarks {
     });
   };
 
-  _nextBookmarks() {
-    const downBtn = document.querySelector(".bookmarked__next");
+  _btnContainer() {
     const container = document.querySelector(".bookmarked__slider");
     const containers = document.querySelectorAll(".bookmared__container");
-
+    let bookmarkContainer = document.querySelector(".bookmared__container");
     container.style.transition = "transform 0.4s ease-in-out";
+
+    const style = window.getComputedStyle(bookmarkContainer);
+    const containerSize =
+      bookmarkContainer.clientWidth +
+      Number.parseInt(
+        (bookmarkContainer = style.getPropertyValue("-moz-margin-start")),
+        10
+      );
     let maxSlide = containers.length;
-    console.log(maxSlide);
-    downBtn.addEventListener("click", () => {
-      if (this._curSlide === 0) {
-        this._curSLide = maxSlide;
-      } else {
+
+    return (this._btnContainers = {
+      container,
+      containers,
+      containerSize,
+      maxSlide,
+    });
+  }
+
+  _nextBookmarks() {
+    this._btnContainer();
+    const nextBtn = document.querySelector(".bookmarked__btn--next");
+    nextBtn.addEventListener("click", () => {
+      console.log(this._curSlide);
+      if (this._curSlide !== 0) {
         this._curSlide++;
       }
-      container.style.transform = `translateX(${190 * this._curSlide}px)`;
+      this._btnContainers.container.style.transform = `translateX(${
+        this._btnContainers.containerSize * this._curSlide
+      }px)`;
     });
   }
 
   _prevBookmarks() {
-    const prevBtn = document.querySelector(".bookmarked__prev");
-    let container = document.querySelector(".bookmarked__slider");
-    const containers = document.querySelectorAll(".bookmared__container");
-    container.style.transition = "transform 0.4s ease-in-out";
-    let maxSlide = containers.length;
-    console.log(this._curSlide);
+    this._btnContainer();
+    const prevBtn = document.querySelector(".bookmarked__btn--prev");
     prevBtn.addEventListener("click", () => {
-      this._curSlide--;
-      console.log(this._curSlide);
-      container.style.transform = `translateX(${190 * this._curSlide}px)`;
+      if (this._curSlide !== -this._btnContainers.maxSlide + 1) {
+        console.log(this._curSlide);
+        this._curSlide--;
+      }
+      this._btnContainers.container.style.transform = `translateX(${
+        this._btnContainers.containerSize * this._curSlide
+      }px)`;
     });
   }
 }
