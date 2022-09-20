@@ -13,11 +13,12 @@ html {
 }
 
 body {
+  position: relative;
   font-family: "Raleway", sans-serif;
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
     url("../img/background_clouds.jpg");
   // background-image: url("../img/background_clouds.jpg");
-  height: 100vh;
+  min-height: 100vh;
   background-repeat: no-repeat;
   padding: 2rem;
   background-size: cover;

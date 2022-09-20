@@ -61,8 +61,8 @@ class View {
         <h2 class="section__city-name" data-name="">
           <span> ${data.city.name}</span>
         </h2>
+        
         <div class="section__icon-temp">
-          
           <span class="section__city-temp">
           ${(data.list[0].main.temp - absZer).toFixed(1)}<sup>°C</sup>
           </span>
@@ -74,7 +74,7 @@ class View {
           <figcaption class="figure__describe-weather">${
             data.list[0].weather[0].description
           }</figcaption>
-        </figure>
+          </figure>
         </div>
        
   

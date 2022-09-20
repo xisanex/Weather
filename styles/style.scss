@@ -1,7 +1,41 @@
 @import "./variables";
 @import "./header";
 @import "./input";
-@import "./weatherContain";
+@import "./bookmarkContainer";
 @import "./base";
-@import "./main";
+@import "./weatherContainer";
 @import "./footer";
+
+@media (max-width: 376px) {
+  .header {
+    font-size: 10px;
+    height: 3.5rem;
+  }
+  .container {
+    width: 300px;
+    padding: 1.1rem 2rem;
+  }
+  .search-bar {
+    --size: 40px;
+  }
+  // .bookmared__container {
+  //   height: 140px;
+  // }
+}
+
+@media (max-width: 1031px) and (min-width: 376px) {
+  .bookmared {
+    width: 230px;
+  }
+
+  .section {
+    height: 350px;
+    margin-top: calc(2rem + 50px);
+  }
+}
+
+@media (max-width: 1220px) and (min-width: 1031px) {
+  .bookmared {
+    width: 420px;
+  }
+}

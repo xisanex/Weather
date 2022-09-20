@@ -1,4 +1,5 @@
 .header {
+  font-size: 16px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -17,10 +18,10 @@
           box-shadow: -2px 1px rgb(60, 60, 121);
 }
 .header__title {
-  font-size: 2.1rem;
+  font-size: 2.1em;
 }
 .header__date {
-  font-size: 1.3rem;
+  font-size: 1.3em;
 }
 
 .container {
@@ -111,6 +112,132 @@
   overflow: hidden;
 }
 
+.bookmared {
+  position: relative;
+  width: 610px;
+  height: 250px;
+  background-color: rgba(60, 60, 121, 0.75);
+  margin-top: 50px;
+  border-radius: 3%;
+  overflow: hidden;
+}
+.bookmared .bookmarked__btn {
+  position: absolute;
+  z-index: 3;
+  top: 45%;
+  font-size: 20px;
+  height: 30px;
+  width: 30px;
+  border-radius: 100vh;
+  color: rgb(196, 195, 195);
+  background-color: rgb(41, 38, 38);
+  border: none;
+  -webkit-transition: background 300ms ease-in-out, color 300ms ease-in-out;
+  transition: background 300ms ease-in-out, color 300ms ease-in-out;
+}
+.bookmared .bookmarked__btn:hover {
+  cursor: pointer;
+  color: rgb(41, 38, 38);
+  background-color: rgb(202, 133, 36);
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+}
+.bookmared .bookmarked__btn--next {
+  left: 96%;
+  -webkit-transform: translate(-50%, 0) rotate(270deg);
+          transform: translate(-50%, 0) rotate(270deg);
+}
+.bookmared .bookmarked__btn--prev {
+  left: 4%;
+  -webkit-transform: translate(-50%, 0) rotate(90deg);
+          transform: translate(-50%, 0) rotate(90deg);
+}
+.bookmared .bookmarked__slider {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 250px;
+}
+.bookmared .bookmarked__slider .bookmared__container {
+  position: relative;
+  width: 150px;
+  height: 180px;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  background-color: rgb(41, 38, 38);
+  color: rgb(202, 133, 36);
+  border-radius: 10%;
+  margin-left: 40px;
+  z-index: 2;
+}
+.bookmared .bookmarked__slider .bookmared__container .container__city-name {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+}
+.bookmared .bookmarked__slider .bookmared__container .bookmarked__icon {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -80%);
+          transform: translate(-50%, -80%);
+}
+.bookmared .bookmarked__slider .bookmared__container .bookmarked__cancel {
+  position: absolute;
+  top: -2%;
+  left: 100%;
+  -webkit-transform: translate(-100%, 0);
+          transform: translate(-100%, 0);
+  color: rgb(202, 133, 36);
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+}
+.bookmared .bookmarked__slider .bookmared__container .bookmarked__cancel:hover {
+  cursor: pointer;
+  -webkit-transform: translate(-100%, 0) scale(1.2);
+          transform: translate(-100%, 0) scale(1.2);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  font-family: "Raleway", sans-serif;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 0.5))), url("../img/background_clouds.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url("../img/background_clouds.jpg");
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  padding: 2rem;
+  background-size: cover;
+  color: rgb(196, 195, 195);
+}
+
+.hidden {
+  opacity: 0;
+}
+
 sup {
   font-size: 0.6em;
 }
@@ -118,7 +245,7 @@ sup {
 .section {
   position: relative;
   background-color: rgba(159, 107, 35, 0.75);
-  width: 28vw;
+  min-width: 400px;
   height: 400px;
   border-radius: 5%;
   float: right;
@@ -156,7 +283,7 @@ sup {
 }
 .section__icon-temp {
   position: relative;
-  width: 24vw;
+  width: 400px;
   height: 180px;
   top: 20%;
   left: 50%;
@@ -166,7 +293,7 @@ sup {
 .section__icon-temp .section__city-temp {
   position: absolute;
   top: 30%;
-  left: 95%;
+  left: 85%;
   font-size: 2.8rem;
   border-bottom: solid;
   -webkit-transform: translate(-95%, -30%);
@@ -175,7 +302,7 @@ sup {
 .section__icon-temp .section__city-temp-feels {
   position: absolute;
   top: 65%;
-  left: 90%;
+  left: 80%;
   -webkit-transform: translate(-90%, -65%);
           transform: translate(-90%, -65%);
   font-size: 1.6rem;
@@ -186,7 +313,7 @@ sup {
   width: 150px;
   height: 200px;
   top: 20%;
-  left: -5%;
+  left: 5%;
   -webkit-transform: translate(5%, -20%);
           transform: translate(5%, -20%);
 }
@@ -249,138 +376,39 @@ sup {
       flex-wrap: wrap;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-}
-
-*,
-*::before,
-*::after {
-  -webkit-box-sizing: inherit;
-          box-sizing: inherit;
-}
-
-html {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
-body {
-  font-family: "Raleway", sans-serif;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 0.5))), url("../img/background_clouds.jpg");
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url("../img/background_clouds.jpg");
-  height: 100vh;
-  background-repeat: no-repeat;
-  padding: 2rem;
-  background-size: cover;
-  color: rgb(196, 195, 195);
-}
-
-.hidden {
-  opacity: 0;
-}
-
-.bookmared {
-  position: relative;
-  width: 610px;
-  height: 250px;
-  background-color: rgba(60, 60, 121, 0.75);
-  margin-top: 50px;
-  border-radius: 3%;
-}
-
-.bookmarked__slider {
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  height: 250px;
-}
-
-.bookmarked__btn {
+footer {
   position: absolute;
-  z-index: 3;
-  top: 45%;
-  font-size: 20px;
-  height: 30px;
-  width: 30px;
-  border-radius: 100vh;
-  color: rgb(196, 195, 195);
-  background-color: rgb(41, 38, 38);
-  border: none;
-  -webkit-transition: background 300ms ease-in-out;
-  transition: background 300ms ease-in-out;
-  -webkit-transition: color 300ms ease-in-out;
-  transition: color 300ms ease-in-out;
+  right: 0;
+  bottom: 0;
+  height: 70px;
+  width: 100%;
+  background-color: pink;
 }
 
-.bookmarked__btn:hover {
-  cursor: pointer;
-  color: rgb(41, 38, 38);
-  background-color: rgb(202, 133, 36);
-  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+@media (max-width: 376px) {
+  .header {
+    font-size: 10px;
+    height: 3.5rem;
+  }
+  .container {
+    width: 300px;
+    padding: 1.1rem 2rem;
+  }
+  .search-bar {
+    --size: 40px;
+  }
 }
-
-.bookmarked__btn--next {
-  left: 97%;
-  -webkit-transform: translate(-50%, 0) rotate(270deg);
-          transform: translate(-50%, 0) rotate(270deg);
+@media (max-width: 1031px) and (min-width: 376px) {
+  .bookmared {
+    width: 230px;
+  }
+  .section {
+    height: 350px;
+    margin-top: calc(2rem + 50px);
+  }
 }
-
-.bookmarked__prev {
-  left: 3%;
-  -webkit-transform: translate(-50%, 0) rotate(90deg);
-          transform: translate(-50%, 0) rotate(90deg);
-}
-
-.bookmared__container {
-  position: relative;
-  width: 150px;
-  height: 180px;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
-  background-color: rgb(41, 38, 38);
-  color: rgb(202, 133, 36);
-  border-radius: 10%;
-  margin-left: 40px;
-  z-index: 2;
-}
-
-.container__city-name {
-  position: absolute;
-  left: 50%;
-  top: 10%;
-  -webkit-transform: translate(-50%, 0);
-          transform: translate(-50%, 0);
-}
-
-.bookmarked__icon {
-  position: absolute;
-  top: 80%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -80%);
-          transform: translate(-50%, -80%);
-}
-
-.bookmarked__cancel {
-  position: absolute;
-  top: -2%;
-  left: 100%;
-  -webkit-transform: translate(-100%, 0);
-          transform: translate(-100%, 0);
-  color: rgb(202, 133, 36);
-  background-color: transparent;
-  border: none;
-  font-size: 20px;
-}
-
-.bookmarked__cancel:hover {
-  cursor: pointer;
-  -webkit-transform: translate(-100%, 0) scale(1.2);
-          transform: translate(-100%, 0) scale(1.2);
+@media (max-width: 1220px) and (min-width: 1031px) {
+  .bookmared {
+    width: 420px;
+  }
 }/*# sourceMappingURL=style.css.map */

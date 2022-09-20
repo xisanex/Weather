@@ -4,7 +4,7 @@ sup {
 .section {
   position: relative;
   background-color: $color-input1;
-  width: 28vw;
+  min-width: 400px;
   height: 400px;
   border-radius: 5%;
   float: right;
@@ -42,7 +42,7 @@ sup {
 
   &__icon-temp {
     position: relative;
-    width: 24vw;
+    width: 400px;
     height: 180px;
     top: 20%;
     left: 50%;
@@ -51,7 +51,7 @@ sup {
     .section__city-temp {
       position: absolute;
       top: 30%;
-      left: 95%;
+      left: 85%;
       font-size: 2.8rem;
       border-bottom: solid;
       transform: translate(-95%, -30%);
@@ -59,7 +59,7 @@ sup {
     .section__city-temp-feels {
       position: absolute;
       top: 65%;
-      left: 90%;
+      left: 80%;
       transform: translate(-90%, -65%);
       font-size: 1.6rem;
       color: $color-input-typing;
@@ -69,7 +69,7 @@ sup {
       width: 150px;
       height: 200px;
       top: 20%;
-      left: -5%;
+      left: 5%;
       transform: translate(5%, -20%);
       .figure__city-icon {
         position: absolute;
