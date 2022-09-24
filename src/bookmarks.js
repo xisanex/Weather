@@ -25,13 +25,13 @@ class Bookmarks {
   renderBookmarks = (data) => {
     this._idNum++;
     let html = `
-      <div class="bookmared__container">
+      <div class="bookmarked__container">
       <button type="button" class="bookmarked__cancel bookmarked__cancel--${
         this._idNum
       }"><i class="fas fa-window-close"></i></button>
       <span class="container__city-name">${data.city.name}</span>
       <figure class="bookmarked__icon">
-      <img src="${`http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`}" alt="Weather icon"/>
+        <img class="icon" src="${`http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`}" alt="Weather icon"/>
       </figure>
       </div>`;
     this._listWeatherContainer.insertAdjacentHTML("beforeend", html);
@@ -95,8 +95,8 @@ class Bookmarks {
 
   _btnContainer() {
     const container = document.querySelector(".bookmarked__slider");
-    const containers = document.querySelectorAll(".bookmared__container");
-    let bookmarkContainer = document.querySelector(".bookmared__container");
+    const containers = document.querySelectorAll(".bookmarked__container");
+    let bookmarkContainer = document.querySelector(".bookmarked__container");
     container.style.transition = "transform 0.4s ease-in-out";
 
     const style = window.getComputedStyle(bookmarkContainer);

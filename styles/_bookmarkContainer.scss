@@ -1,4 +1,6 @@
-.bookmared {
+.bookmarked {
+  font-size: 20px;
+  // --height: 250px;
   position: relative;
   width: 610px;
   height: 250px;
@@ -6,7 +8,7 @@
   margin-top: 50px;
   border-radius: 3%;
   overflow: hidden;
-  .bookmarked__btn {
+  &__btn {
     position: absolute;
     z-index: 3;
     top: 45%;
@@ -20,27 +22,27 @@
     border: none;
     transition: background 300ms ease-in-out, color 300ms ease-in-out;
   }
-  .bookmarked__btn:hover {
+  &__btn:hover {
     cursor: pointer;
     color: $color-nav;
     background-color: $color-header;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
   }
-  .bookmarked__btn--next {
-    left: 96%;
+  &__btn--next {
+    left: 97%;
     transform: translate(-50%, 0) rotate(270deg);
   }
 
-  .bookmarked__btn--prev {
-    left: 4%;
+  &__btn--prev {
+    left: 3%;
     transform: translate(-50%, 0) rotate(90deg);
   }
-  .bookmarked__slider {
+  &__slider {
     position: relative;
     display: flex;
     align-items: center;
     height: 250px;
-    .bookmared__container {
+    .bookmarked__container {
       position: relative;
       width: 150px;
       height: 180px;
@@ -52,6 +54,7 @@
       // margin-right: 2%;
       z-index: 2;
       .container__city-name {
+        font-size: 1.2em;
         position: absolute;
         left: 50%;
         top: 10%;
@@ -62,6 +65,10 @@
         top: 80%;
         left: 50%;
         transform: translate(-50%, -80%);
+        .icon {
+          width: 110px;
+          height: auto;
+        }
       }
       .bookmarked__cancel {
         position: absolute;

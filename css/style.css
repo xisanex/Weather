@@ -1,3 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  font-family: "Raleway", sans-serif;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 0.5))), url("../img/background_clouds.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url("../img/background_clouds.jpg");
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  padding: 2rem;
+  background-size: cover;
+  color: rgb(196, 195, 195);
+}
+
+.hidden {
+  opacity: 0;
+}
+
 .header {
   font-size: 16px;
   display: -webkit-box;
@@ -112,7 +145,8 @@
   overflow: hidden;
 }
 
-.bookmared {
+.bookmarked {
+  font-size: 20px;
   position: relative;
   width: 610px;
   height: 250px;
@@ -121,7 +155,7 @@
   border-radius: 3%;
   overflow: hidden;
 }
-.bookmared .bookmarked__btn {
+.bookmarked__btn {
   position: absolute;
   z-index: 3;
   top: 45%;
@@ -135,24 +169,24 @@
   -webkit-transition: background 300ms ease-in-out, color 300ms ease-in-out;
   transition: background 300ms ease-in-out, color 300ms ease-in-out;
 }
-.bookmared .bookmarked__btn:hover {
+.bookmarked__btn:hover {
   cursor: pointer;
   color: rgb(41, 38, 38);
   background-color: rgb(202, 133, 36);
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
 }
-.bookmared .bookmarked__btn--next {
-  left: 96%;
+.bookmarked__btn--next {
+  left: 97%;
   -webkit-transform: translate(-50%, 0) rotate(270deg);
           transform: translate(-50%, 0) rotate(270deg);
 }
-.bookmared .bookmarked__btn--prev {
-  left: 4%;
+.bookmarked__btn--prev {
+  left: 3%;
   -webkit-transform: translate(-50%, 0) rotate(90deg);
           transform: translate(-50%, 0) rotate(90deg);
 }
-.bookmared .bookmarked__slider {
+.bookmarked__slider {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -162,7 +196,7 @@
           align-items: center;
   height: 250px;
 }
-.bookmared .bookmarked__slider .bookmared__container {
+.bookmarked__slider .bookmarked__container {
   position: relative;
   width: 150px;
   height: 180px;
@@ -174,21 +208,26 @@
   margin-left: 40px;
   z-index: 2;
 }
-.bookmared .bookmarked__slider .bookmared__container .container__city-name {
+.bookmarked__slider .bookmarked__container .container__city-name {
+  font-size: 1.2em;
   position: absolute;
   left: 50%;
   top: 10%;
   -webkit-transform: translate(-50%, 0);
           transform: translate(-50%, 0);
 }
-.bookmared .bookmarked__slider .bookmared__container .bookmarked__icon {
+.bookmarked__slider .bookmarked__container .bookmarked__icon {
   position: absolute;
   top: 80%;
   left: 50%;
   -webkit-transform: translate(-50%, -80%);
           transform: translate(-50%, -80%);
 }
-.bookmared .bookmarked__slider .bookmared__container .bookmarked__cancel {
+.bookmarked__slider .bookmarked__container .bookmarked__icon .icon {
+  width: 110px;
+  height: auto;
+}
+.bookmarked__slider .bookmarked__container .bookmarked__cancel {
   position: absolute;
   top: -2%;
   left: 100%;
@@ -199,43 +238,10 @@
   border: none;
   font-size: 20px;
 }
-.bookmared .bookmarked__slider .bookmared__container .bookmarked__cancel:hover {
+.bookmarked__slider .bookmarked__container .bookmarked__cancel:hover {
   cursor: pointer;
   -webkit-transform: translate(-100%, 0) scale(1.2);
           transform: translate(-100%, 0) scale(1.2);
-}
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-*,
-*::before,
-*::after {
-  -webkit-box-sizing: inherit;
-          box-sizing: inherit;
-}
-
-html {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
-body {
-  position: relative;
-  font-family: "Raleway", sans-serif;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 0.5))), url("../img/background_clouds.jpg");
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url("../img/background_clouds.jpg");
-  min-height: 100vh;
-  background-repeat: no-repeat;
-  padding: 2rem;
-  background-size: cover;
-  color: rgb(196, 195, 195);
-}
-
-.hidden {
-  opacity: 0;
 }
 
 sup {
@@ -246,6 +252,7 @@ sup {
   position: relative;
   background-color: rgba(159, 107, 35, 0.75);
   min-width: 400px;
+  max-width: 400px;
   height: 400px;
   border-radius: 5%;
   float: right;
@@ -283,7 +290,7 @@ sup {
 }
 .section__icon-temp {
   position: relative;
-  width: 400px;
+  width: 100%;
   height: 180px;
   top: 20%;
   left: 50%;
@@ -301,10 +308,10 @@ sup {
 }
 .section__icon-temp .section__city-temp-feels {
   position: absolute;
-  top: 65%;
+  top: 55%;
   left: 80%;
-  -webkit-transform: translate(-90%, -65%);
-          transform: translate(-90%, -65%);
+  -webkit-transform: translate(-90%, 0);
+          transform: translate(-90%, 0);
   font-size: 1.6rem;
   color: rgb(196, 195, 195);
 }
@@ -328,10 +335,10 @@ sup {
 }
 .section__icon-temp .section__figure .figure__describe-weather {
   position: absolute;
-  top: 65%;
+  top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -65%);
-          transform: translate(-50%, -65%);
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
   font-size: 1.1rem;
 }
 .section__day {
@@ -385,7 +392,16 @@ footer {
   background-color: pink;
 }
 
-@media (max-width: 376px) {
+@media (max-width: 768px) {
+  .row {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
   .header {
     font-size: 10px;
     height: 3.5rem;
@@ -397,18 +413,93 @@ footer {
   .search-bar {
     --size: 40px;
   }
-}
-@media (max-width: 1031px) and (min-width: 376px) {
-  .bookmared {
-    width: 230px;
+  .bookmarked {
+    font-size: 13px;
+    margin-top: 25px;
+    width: 275px;
+    height: 150px;
+  }
+  .bookmarked__btn {
+    height: 19px;
+    width: 19px;
+    font-size: 13px;
+  }
+  .bookmarked__slider {
+    height: 150px;
+  }
+  .bookmarked__slider .bookmarked__container {
+    height: 100px;
+    width: 100px;
+    margin-left: 25px;
+  }
+  .bookmarked__slider .bookmarked__container .bookmarked__icon .icon {
+    width: 70px;
+    height: 70px;
+  }
+  .bookmarked__slider .bookmarked__container .bookmarked__cancel {
+    font-size: 15px;
   }
   .section {
-    height: 350px;
-    margin-top: calc(2rem + 50px);
+    min-width: 300px;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
+  }
+  .section__btn-bookmark {
+    height: 40px;
+    width: 40px;
+    font-size: 30px;
+  }
+  .section__icon-temp .section__city-temp {
+    font-size: 2.3rem;
+  }
+  .section__icon-temp .section__city-temp-feels {
+    font-size: 1.4rem;
+    top: 50%;
+  }
+  .section__icon-temp .section__figure .figure__city-icon {
+    width: 110px;
+  }
+  .section__icon-temp .section__figure .figure__describe-weather {
+    font-size: 1rem;
+    top: 47%;
+  }
+  .section__day {
+    width: 100px;
+    height: 110px;
   }
 }
-@media (max-width: 1220px) and (min-width: 1031px) {
-  .bookmared {
+@media (max-width: 768px) and (orientation: landscape) {
+  .bookmarked {
+    width: 400px;
+  }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1080px) and (orientation: portrait) {
+  .section {
+    left: 50%;
+    -webkit-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
+  }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1080px) and (orientation: landscape) {
+  .row {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .bookmarked {
+    width: 420px;
+  }
+  .bookmarked__btn--next {
+    left: 96%;
+  }
+  .bookmarked__btn--prev {
+    left: 4%;
+  }
+}
+@media (max-width: 1220px) and (min-width: 1080px) {
+  .bookmarked {
     width: 420px;
   }
 }/*# sourceMappingURL=style.css.map */

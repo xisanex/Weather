@@ -1,12 +1,16 @@
 @import "./variables";
+@import "./base";
 @import "./header";
 @import "./input";
 @import "./bookmarkContainer";
-@import "./base";
 @import "./weatherContainer";
 @import "./footer";
 
-@media (max-width: 376px) {
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+    justify-content: center;
+  }
   .header {
     font-size: 10px;
     height: 3.5rem;
@@ -18,24 +22,112 @@
   .search-bar {
     --size: 40px;
   }
-  // .bookmared__container {
-  //   height: 140px;
-  // }
-}
-
-@media (max-width: 1031px) and (min-width: 376px) {
-  .bookmared {
-    width: 230px;
+  .bookmarked {
+    // left: 50%;
+    // transform: translate(-50%, 0);
+    font-size: 13px;
+    margin-top: 25px;
+    // margin: 25px auto 0 auto;
+    width: 275px;
+    height: 150px;
+    &__btn {
+      height: 19px;
+      width: 19px;
+      font-size: 13px;
+    }
+    &__slider {
+      height: 150px;
+      .bookmarked__container {
+        height: 100px;
+        width: 100px;
+        margin-left: 25px;
+        .bookmarked__icon {
+          .icon {
+            width: 70px;
+            height: 70px;
+          }
+        }
+        .bookmarked__cancel {
+          font-size: 15px;
+        }
+      }
+    }
   }
-
   .section {
-    height: 350px;
-    margin-top: calc(2rem + 50px);
+    min-width: 300px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    // margin-bottom: 10px;
+    &__btn-bookmark {
+      height: 40px;
+      width: 40px;
+      font-size: 30px;
+    }
+    &__icon-temp {
+      .section__city-temp {
+        font-size: 2.3rem;
+      }
+      .section__city-temp-feels {
+        font-size: 1.4rem;
+        top: 50%;
+      }
+      .section__figure {
+        .figure__city-icon {
+          width: 110px;
+        }
+        .figure__describe-weather {
+          font-size: 1rem;
+          top: 47%;
+        }
+      }
+    }
+    &__day {
+      width: 100px;
+      height: 110px;
+    }
+  }
+}
+@media (max-width: 768px) and (orientation: landscape) {
+  .bookmarked {
+    width: 400px;
+    // align-self: center;
   }
 }
 
-@media (max-width: 1220px) and (min-width: 1031px) {
-  .bookmared {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1080px) and (orientation: portrait) {
+  .section {
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1080px) and (orientation: landscape) {
+  .row {
+    flex-direction: column;
+  }
+  .bookmarked {
+    width: 420px;
+    &__btn--next {
+      left: 96%;
+    }
+
+    &__btn--prev {
+      left: 4%;
+    }
+  }
+}
+// @media (max-width: 1031px) and (min-width: 1080px) {
+//   .bookmarked {
+//     width: 230px;
+//   }
+
+//   .section {
+//     height: 350px;
+//     margin-top: calc(2rem + 50px);
+//   }
+// }
+
+@media (max-width: 1220px) and (min-width: 1080px) {
+  .bookmarked {
     width: 420px;
   }
 }
